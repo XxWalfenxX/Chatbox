@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="47dp"
+        android:layout_height="35dp"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/chatbox" />
+
+    <TextView
+        android:id="@+id/TextChat"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:visibility="visible" />
+</LinearLayout>
