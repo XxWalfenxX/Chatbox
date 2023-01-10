@@ -1,3 +1,3 @@
 # Chatbox
  
-Chatbox es una app de mensajeria intantánea desarrolada en Android 
+Chatbox es una app de mensajeria intantánea desarrollada en Android 
