@@ -15,4 +15,8 @@
     <string name="menu_logoff">Cerrar Sesión</string>
 
     <string name="logoff_label"> Estás seguro de cerrar sesión?</string>
+
+    <string name="cambiar_estado_label">Cambiar Estado</string>
+    <string name="placeholder_estado">Hey estoy usando Chatbox</string>
+    <string name="btn_cambiar">Cambiar</string>
 </resources>
