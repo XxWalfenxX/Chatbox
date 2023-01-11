@@ -35,13 +35,19 @@
         android:textSize="23dp"
         android:textStyle="bold" />
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView3"
         android:layout_width="72dp"
         android:layout_height="68dp"
         android:layout_marginStart="-250dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/chatbox" />
+
+
+        android:src="@drawable/chatbox"
+        />
+
+
 
 </LinearLayout>
