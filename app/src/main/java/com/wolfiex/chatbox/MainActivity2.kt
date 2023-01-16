@@ -29,6 +29,7 @@ class MainActivity2 : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+        // Cargar items barra lateral
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_chat, R.id.nav_contacts, R.id.nav_ajustes, R.id.nav_logoff
