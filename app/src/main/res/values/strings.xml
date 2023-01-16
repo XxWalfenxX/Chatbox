@@ -19,4 +19,6 @@
     <string name="cambiar_estado_label">Cambiar Estado</string>
     <string name="placeholder_estado">Hey estoy usando Chatbox</string>
     <string name="btn_cambiar">Cambiar</string>
+    <string name="enviar">Enviar</string>
+    <string name="enviar_mensaje">Enviar Mensaje</string>
 </resources>
