@@ -27,6 +27,9 @@ class LogoffFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLogoffBinding.inflate(inflater, container, false)
+
+
+        // Cerrar Sesión
         val root: View = binding.root
         var btnLogoff = root.findViewById<Button>(R.id.button_logoff)
 
