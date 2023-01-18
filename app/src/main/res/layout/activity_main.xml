@@ -8,7 +8,7 @@
     tools:context=".MainActivity" >
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imagenUsuario"
         android:layout_width="256dp"
         android:layout_height="262dp"
         android:layout_marginStart="78dp"
@@ -29,5 +29,5 @@
         android:text="@string/login_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
 </androidx.constraintlayout.widget.ConstraintLayout>
