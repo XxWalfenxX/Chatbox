@@ -19,18 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chatbox" />
 
-    <Button
-        android:id="@+id/btn_login_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/login_google"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/textEmailRegister"
@@ -43,9 +31,10 @@
         android:hint="Correo Electronico"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:textColorHint="#78909C"
         android:textColor="#B7DEF1"
+        android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
 
@@ -66,31 +55,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textEmailRegister" />
 
-    <Button
-        android:id="@+id/btn_login_email"
+    <EditText
+        android:id="@+id/textRegisterEmailPasswd2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="101dp"
-        android:text="Iniciar Sesión"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="100dp"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="#B7DEF1"
+        android:textColorHint="#78909C"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textRegisterEmailPasswd" />
 
     <Button
-        android:id="@+id/btn_goto_register"
+        android:id="@+id/btn_register_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="101dp"
-        android:text="Crear cuenta"
+        android:text="Registrar Usuario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/textRegisterEmailPasswd2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
