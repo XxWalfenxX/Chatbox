@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.wolfiex.chatbox.MainActivity
 import com.wolfiex.chatbox.MainActivity2
 import com.wolfiex.chatbox.R
@@ -34,6 +35,7 @@ class LogoffFragment : Fragment() {
         var btnLogoff = root.findViewById<Button>(R.id.button_logoff)
 
         btnLogoff.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
             val intent = Intent()
             intent.setClass(activity!!, MainActivity::class.java)
             startActivity(intent);
