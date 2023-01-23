@@ -30,9 +30,13 @@ class MainActivity : AppCompatActivity() {
         val btnLogin: Button = findViewById(R.id.btn_login_email)
         val email: EditText = findViewById(R.id.textEmailLogin)
         val passwd: EditText = findViewById(R.id.textEmailPasswd)
+
         btnLogin.setOnClickListener {
-            signIn(email.text.toString(), passwd.text.toString())
+            if (!email.text.toString().equals("") && !passwd.text.toString().equals("")) {
+                signIn(email.text.toString(), passwd.text.toString())
+            }
         }
+
     }
 
     public override fun onStart() {
@@ -88,9 +92,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        val intento1 = Intent(this, MainActivity2::class.java)
-        intento1.putExtra("userFirebase", user)
-        startActivity(intento1)
+        if (user != null) {
+            val intento1 = Intent(this, MainActivity2::class.java)
+            intento1.putExtra("userFirebase", user)
+            startActivity(intento1)
+        }
     }
 
     private fun reload() {
