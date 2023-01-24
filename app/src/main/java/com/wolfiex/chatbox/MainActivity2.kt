@@ -1,6 +1,8 @@
 package com.wolfiex.chatbox
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -22,6 +24,9 @@ class MainActivity2 : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val user = Firebase.auth.currentUser
+
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMain2Binding.inflate(layoutInflater)
@@ -42,6 +47,23 @@ class MainActivity2 : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val nav_view: NavigationView = findViewById(R.id.nav_view)
+        val userText: TextView = nav_view.getHeaderView(0).findViewById(R.id.textoNombreUsuario)
+        val emailText: TextView = nav_view.getHeaderView(0).findViewById(R.id.textoMailUser)
+        val estatText: TextView = nav_view.getHeaderView(0).findViewById(R.id.textoEstadoUsuario)
+
+        if (user != null) {
+            userText.setText(user.displayName.toString())
+            emailText.setText(user.email.toString())
+            estatText.setText("test")
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
     private fun getCurrentUser(){
@@ -59,6 +81,10 @@ class MainActivity2 : AppCompatActivity() {
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getToken() instead.
             val uid = user.uid
+
+            //val TextoUsuario: TextView = findViewById(R.id.textoNombreUsuario)
+
+
         }
     }
 
