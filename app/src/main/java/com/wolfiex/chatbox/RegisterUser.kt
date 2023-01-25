@@ -10,6 +10,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.ktx.Firebase
 
 class RegisterUser : AppCompatActivity() {
@@ -22,6 +24,16 @@ class RegisterUser : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        val db = Firebase.firestore
+        // [END get_firestore_instance]
+
+        // [START set_firestore_settings]
+        val settings = firestoreSettings {
+            isPersistenceEnabled = true
+        }
+        db.firestoreSettings = settings
+        // [END set_firestore_settings]
+
         val btnRegister: Button = findViewById(R.id.btn_register_email)
         val email: EditText = findViewById(R.id.textEmailRegister)
         val passwd: EditText = findViewById(R.id.textRegisterEmailPasswd)
@@ -30,6 +42,14 @@ class RegisterUser : AppCompatActivity() {
         btnRegister.setOnClickListener {
             if (!email.text.toString().equals("") && !passwd.text.toString().equals("") && !passwd2.text.toString().equals("")) {
                 if (passwd.text.toString().equals(passwd2.text.toString())){
+                    val datosUser = hashMapOf(
+                        "name" to "Test",
+                        "estado" to "Hola, estoy usando Chatbox"
+                    )
+                    db.collection("users").document(email.text.toString())
+                        .set(datosUser)
+                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
                     createAccount(email.text.toString(), passwd.text.toString())
                 }
             }
