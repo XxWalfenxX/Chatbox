@@ -35,6 +35,7 @@ class RegisterUser : AppCompatActivity() {
         // [END set_firestore_settings]
 
         val btnRegister: Button = findViewById(R.id.btn_register_email)
+        val user: EditText = findViewById(R.id.texoNombreRegister)
         val email: EditText = findViewById(R.id.textEmailRegister)
         val passwd: EditText = findViewById(R.id.textRegisterEmailPasswd)
         val passwd2: EditText = findViewById(R.id.textRegisterEmailPasswd2)
@@ -43,7 +44,7 @@ class RegisterUser : AppCompatActivity() {
             if (!email.text.toString().equals("") && !passwd.text.toString().equals("") && !passwd2.text.toString().equals("")) {
                 if (passwd.text.toString().equals(passwd2.text.toString())){
                     val datosUser = hashMapOf(
-                        "name" to "Test",
+                        "name" to user.text.toString(),
                         "estado" to "Hola, estoy usando Chatbox"
                     )
                     db.collection("users").document(email.text.toString())
