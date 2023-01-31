@@ -72,20 +72,32 @@ class MainActivity2 : AppCompatActivity() {
             val estatText: TextView =
                 nav_view.getHeaderView(0).findViewById(R.id.textoEstadoUsuario)
             var hastest: Map<String, Any>
-            db.collection("users").document(user.email.toString())
-                .get()
+
+            val docRef = db.collection("users").document(user.email.toString())
+            docRef.get()
                 .addOnSuccessListener { document ->
-                    if (document != null) {
+                    if (document.data != null) {
                         Log.d(TAG, "${document.id} => ${document.data}")
                         hastest = document.data as Map<String, Any>
                         estatText.setText(hastest.get("estado").toString())
                         userText.setText(hastest.get("name").toString())
+                    } else {
+                        val userData = hashMapOf(
+                            "estado" to "Hola, estoy usando chatbox",
+                            "name" to user.displayName
+                        )
+                        db.collection("users").document(user.email.toString())
+                            .set(userData)
+                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+                        estatText.text = userData["estado"].toString()
+                        userText.text = userData["name"].toString()
                     }
                 }
                 .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting documents.", exception)
+                    Log.d(TAG, "get failed with ", exception)
                 }
-
+            
             emailText.setText(user.email.toString())
 
         }
