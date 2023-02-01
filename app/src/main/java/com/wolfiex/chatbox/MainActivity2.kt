@@ -29,26 +29,30 @@ class MainActivity2 : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var storage: FirebaseStorage
 
+    /**
+     * Inicialización de la activity con el layout y las referencias necesarias
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        // Referencia a la base de datos y al almacenamiento de Firebase
         val db = Firebase.firestore
         storage = Firebase.storage
 
 
+        // Se llama a la super clase y se inicializa el layout con binding
         super.onCreate(savedInstanceState)
-
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-
         setSupportActionBar(binding.appBarMain.toolbarBarraNavegacion)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         // Cargar items barra lateral
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -61,6 +65,10 @@ class MainActivity2 : AppCompatActivity() {
 
     }
 
+    /**
+     * Método que se ejecuta al iniciar la actividad
+     *
+     */
     override fun onStart() {
         super.onStart()
         val user = Firebase.auth.currentUser
@@ -73,15 +81,18 @@ class MainActivity2 : AppCompatActivity() {
                 nav_view.getHeaderView(0).findViewById(R.id.textoEstadoUsuario)
             var hastest: Map<String, Any>
 
+            // Conseguir nombre de usuario y estado
             val docRef = db.collection("users").document(user.email.toString())
             docRef.get()
                 .addOnSuccessListener { document ->
                     if (document.data != null) {
+                        // Mostrarlo por pantalla
                         Log.d(TAG, "${document.id} => ${document.data}")
                         hastest = document.data as Map<String, Any>
                         estatText.setText(hastest.get("estado").toString())
                         userText.setText(hastest.get("name").toString())
                     } else {
+                        // Agrega usuario y estado inexistentes
                         val userData = hashMapOf(
                             "estado" to "Hola, estoy usando chatbox",
                             "name" to user.displayName
@@ -103,6 +114,10 @@ class MainActivity2 : AppCompatActivity() {
         }
     }
 
+    /**
+     * Conseguir los datos del usuario actual
+     *
+     */
     private fun getCurrentUser() {
         val user = Firebase.auth.currentUser
         user?.let {
@@ -125,6 +140,11 @@ class MainActivity2 : AppCompatActivity() {
         }
     }
 
+    /**
+     * Volver a un fragmento anterior
+     *
+     * @return
+     */
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

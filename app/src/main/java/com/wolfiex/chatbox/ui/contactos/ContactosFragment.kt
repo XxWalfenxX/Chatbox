@@ -25,7 +25,11 @@ class ContactosFragment : Fragment() {
 
     private var listaObtenida = ArrayList<Contactos>()
 
-
+    /**
+     * Inicializar el RecyclerView
+     *
+     * @param root
+     */
     fun initRecycler(root: View) {
         val recyclerViewRadios = root.findViewById<RecyclerView>(R.id.listaContactos)
         recyclerViewRadios.layoutManager =
@@ -34,6 +38,14 @@ class ContactosFragment : Fragment() {
         recyclerViewRadios.adapter = adapter
     }
 
+    /**
+     * Inicialización de la activity con el layout y las referencias necesarias
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +53,7 @@ class ContactosFragment : Fragment() {
     ): View {
         _binding = FragmentContactosBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        // Obtener nombre y estado de los usuarios
         db.collection("users")
             .get()
             .addOnSuccessListener { result ->
@@ -58,6 +71,10 @@ class ContactosFragment : Fragment() {
         return root
     }
 
+    /**
+     * Funcion que se ejecuta al cerrar la Activity
+     *
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
