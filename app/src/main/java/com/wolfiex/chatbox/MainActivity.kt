@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
+    /**
+     * Inicialización de la activity con el layout y las referencias necesarias
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -60,6 +65,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Método que se ejecuta al iniciar la actividad
+     *
+     */
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -69,6 +78,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Recibe el estado del Activity
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -87,6 +103,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Autentificación con Google
+     *
+     * @param idToken
+     */
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
@@ -104,6 +125,12 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Inicio de sesión con email
+     *
+     * @param email correo
+     * @param password contraseña
+     */
     private fun signIn(email: String, password: String) {
         // [START sign_in_with_email]
         auth.signInWithEmailAndPassword(email, password)
@@ -125,11 +152,20 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Inicio de sesión con Google
+     *
+     */
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    /**
+     * Actualizar la interfaz de usuario
+     *
+     * @param user usuario de Firebase
+     */
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             val intento1 = Intent(this, MainActivity2::class.java)
@@ -138,6 +174,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     *  Cambia la actividad si hay un usuario con sesión activa
+     *
+     */
     private fun reload() {
         val intento1 = Intent(this, MainActivity2::class.java)
         startActivity(intento1)

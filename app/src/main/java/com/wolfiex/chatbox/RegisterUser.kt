@@ -18,6 +18,11 @@ class RegisterUser : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    /**
+     * Inicialización de la activity con el layout y las referencias necesarias
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_user)
@@ -25,14 +30,11 @@ class RegisterUser : AppCompatActivity() {
         auth = Firebase.auth
 
         val db = Firebase.firestore
-        // [END get_firestore_instance]
 
-        // [START set_firestore_settings]
         val settings = firestoreSettings {
             isPersistenceEnabled = true
         }
         db.firestoreSettings = settings
-        // [END set_firestore_settings]
 
         val btnRegister: Button = findViewById(R.id.btn_register_email)
         val user: EditText = findViewById(R.id.texoNombreRegister)
@@ -40,9 +42,11 @@ class RegisterUser : AppCompatActivity() {
         val passwd: EditText = findViewById(R.id.textRegisterEmailPasswd)
         val passwd2: EditText = findViewById(R.id.textRegisterEmailPasswd2)
 
+        // Registrar usuario
         btnRegister.setOnClickListener {
             if (!email.text.toString().equals("") && !passwd.text.toString().equals("") && !passwd2.text.toString().equals("")) {
                 if (passwd.text.toString().equals(passwd2.text.toString())){
+                    // Agregar datos a la base de datos
                     val datosUser = hashMapOf(
                         "name" to user.text.toString(),
                         "estado" to "Hola, estoy usando Chatbox"
@@ -58,6 +62,12 @@ class RegisterUser : AppCompatActivity() {
 
     }
 
+    /**
+     * Crea una cuenta con email
+     *
+     * @param email correo
+     * @param password contraseña
+     */
     private fun createAccount(email: String, password: String) {
         // [START create_user_with_email]
         auth.createUserWithEmailAndPassword(email, password)
@@ -80,6 +90,11 @@ class RegisterUser : AppCompatActivity() {
         // [END create_user_with_email]
     }
 
+    /**
+     * Actualizar la interfaz de usuario
+     *
+     * @param user
+     */
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             val intento1 = Intent(this, MainActivity2::class.java)
